@@ -4,15 +4,26 @@ import "./App.css";
 import Feed from "./Feed";
 import Sidebar from "./Sidebar";
 import Widgets from "./Widgets";
+import Login from "./login"
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 function App() {
     //Wgranie elementów na stronę
     return (
-        <div className="app">
-            <Sidebar />
-            <Feed />
-            <Widgets />
-        </div>
+        <BrowserRouter>
+            <div className="app">
+                <Sidebar/>
+
+                <Switch>
+                    <Route path={"/feed"} component={Feed}/>
+                    <Route path={"/login"} component={Login}/>
+                </Switch>
+
+                <Widgets/>
+            </div>
+        </BrowserRouter>
+
+
     );
 }
 
