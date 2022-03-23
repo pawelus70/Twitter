@@ -10,20 +10,21 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
-import { Button } from "@material-ui/core";
+import {Button} from "@material-ui/core";
+
 //Boczny pasek nawigacyjny z ikonami
 function Sidebar() {
     return (
         <div className="sidebar">
-            <TwitterIcon className="sidebar__twitterIcon" />
-            <SidebarOption Icon={HomeIcon} text="Home" active={true} />
-            <SidebarOption Icon={SearchIcon} text="Explore" />
-            <SidebarOption Icon={NotificationsNoneIcon} text="Notifications" />
-            <SidebarOption Icon={MailOutlineIcon} text="Messages" />
-            <SidebarOption Icon={BookmarkBorderIcon} text="Bookmarks" />
-            <SidebarOption Icon={ListAltIcon} text="Lists" />
-            <SidebarOption Icon={PermIdentityIcon} text="Profile" />
-            <SidebarOption Icon={MoreHorizIcon} text="More" />
+            <TwitterIcon className="sidebar__twitterIcon"/>
+            <a href={"feed"}> <SidebarOption Icon={HomeIcon} text="Home" active={true}/></a>
+            <SidebarOption Icon={SearchIcon} text="Explore"/>
+            <SidebarOption Icon={NotificationsNoneIcon} text="Notifications"/>
+            <SidebarOption Icon={MailOutlineIcon} text="Messages"/>
+            <a href={"login"}> <SidebarOption Icon={PermIdentityIcon} text="Login"/> </a>
+            <a href={"register"}> <SidebarOption Icon={PermIdentityIcon} text="Register"/> </a>
+            <SidebarOption Icon={PermIdentityIcon} text="Profile"/>
+            <SidebarOption Icon={MoreHorizIcon} text="More"/>
 
             <Button variant="outlined" className="sidebar__tweet" fullWidth>
                 Tweet

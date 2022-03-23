@@ -4,8 +4,11 @@ import "./App.css";
 import Feed from "./Feed";
 import Sidebar from "./Sidebar";
 import Widgets from "./Widgets";
-import Login from "./login"
+import Login from "./login";
+import FormRegister from "./fromRegister";
+
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
+
 
 function App() {
     //Wgranie elementów na stronę
@@ -17,6 +20,7 @@ function App() {
                 <Switch>
                     <Route path={"/feed"} component={Feed}/>
                     <Route path={"/login"} component={Login}/>
+                    <Route path={"/register"} component={FormRegister}/>
                 </Switch>
 
                 <Widgets/>
