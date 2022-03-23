@@ -17,12 +17,12 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <TwitterIcon className="sidebar__twitterIcon"/>
-            <a href={"feed"}> <SidebarOption Icon={HomeIcon} text="Home" active={true}/></a>
+            <SidebarOption Icon={HomeIcon} text="Home" link="feed" active={true}/>
             <SidebarOption Icon={SearchIcon} text="Explore"/>
             <SidebarOption Icon={NotificationsNoneIcon} text="Notifications"/>
             <SidebarOption Icon={MailOutlineIcon} text="Messages"/>
-            <a href={"login"}> <SidebarOption Icon={PermIdentityIcon} text="Login"/> </a>
-            <a href={"register"}> <SidebarOption Icon={PermIdentityIcon} text="Register"/> </a>
+            <SidebarOption Icon={PermIdentityIcon} text="Login" link="login" />
+            <SidebarOption Icon={PermIdentityIcon} text="Register" link="register"/>
             <SidebarOption Icon={PermIdentityIcon} text="Profile"/>
             <SidebarOption Icon={MoreHorizIcon} text="More"/>
 

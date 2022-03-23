@@ -10,7 +10,7 @@ function Login() {
         e.preventDefault()
         //Sprawdzenie czy użytkownik jest
 
-        if (email != "" && password != "") {
+        if (email !== "" && password !== "") {
             async function getMultiple(db) {
                 // [START firestore_data_query]
                 const citiesRef = db.collection('users');
@@ -33,7 +33,7 @@ function Login() {
                 // [END firestore_data_query]
             }
 
-            var quest = getMultiple(db);
+            getMultiple(db);
 
         } else {
             alert("podane hasła się nie zgadzaja/brak danych")

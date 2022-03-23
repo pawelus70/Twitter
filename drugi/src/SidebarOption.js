@@ -1,12 +1,15 @@
 import React from "react";
 import "./SidebarOption.css";
 //Opcje bocznego pasku
-function SidebarOption({ text, Icon, active }) {
+function SidebarOption({ text, Icon, link, active }) {
     return (
-        <div className={`sidebarOption  ${active && "sidebarOption--active"}`}>
+        <a href={link}>
+        <div className={`sidebarOption  ${active && "sidebarOption--active"}`} >
             <Icon />
             <h2>{text}</h2>
+
         </div>
+            </a>
     );
 }
 

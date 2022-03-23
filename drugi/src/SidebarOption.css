@@ -20,3 +20,6 @@
 .sidebarOption--active {
     color: var(--twitter-color);
 }
+a{
+    text-decoration: none;
+}

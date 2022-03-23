@@ -17,7 +17,7 @@ function Register() {
         e.preventDefault()
 
         //Dodanie użytkownika do bazy
-        if (password === repeatPassword && email != "" && firstName != "" && lastName != "" && username != "" && password != "") {
+        if (password === repeatPassword && email !== "" && firstName !== "" && lastName !== "" && username !== "" && password !== "") {
 
             async function getMultiple(db) {
                 // [START firestore_data_query]
@@ -47,7 +47,7 @@ function Register() {
                 // [END firestore_data_query]
             }
 
-            var quest = getMultiple(db);
+            getMultiple(db);
 
         } else {
             alert("podane hasła się nie zgadzaja/brak danych")
