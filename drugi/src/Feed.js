@@ -3,15 +3,24 @@ import "./Feed.css";
 import Post from "./Post";
 import TweetBox from "./TweetBox";
 import db from "./firebase";
+import {useHistory} from "react-router-dom"
+
 //Wstawianie postów na stronę
 function Feed() {
-    const [posts, setPosts] = useState([]);
 
-    useEffect(() => {
-        db.collection("posts").onSnapshot((snapshot) => {
-            setPosts(snapshot.docs.map((doc) => doc.data()));
-        });
-    }, []);
+   /* let history= useHistory();
+    if(localStorage.getItem("login") !== true ){
+            history.push('/login');
+        }*/
+
+        const [posts, setPosts] = useState([]);
+
+        useEffect(() => {
+            db.collection("posts").onSnapshot((snapshot) => {
+                setPosts(snapshot.docs.map((doc) => doc.data()));
+            });
+        }, []);
+
 
     return (
         <div className="feed">

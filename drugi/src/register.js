@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import db from "./firebase";
+import {useHistory} from "react-router-dom"
 
 function Register() {
 
@@ -9,7 +10,7 @@ function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
-
+    let history = useHistory();
 
     const sendRegister = (e) => {
 
@@ -35,6 +36,7 @@ function Register() {
 
                     });
                     alert("Created: ", username)
+                    history.push('/feed');
                     return;
 
                 }
