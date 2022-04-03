@@ -1,50 +1,44 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom"
-import db from "./firebase";
+import {db, auth} from "./firebase";
+import Cookies from 'universal-cookie';
+
 
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    let history= useHistory();
+    let history = useHistory();
 
 
     const sendLogin = (e) => {
         e.preventDefault()
 
-
+        //sprawdzenie czy użytwkonik uzupełnił pola
         if (email !== "" && password !== "") {
-            //Sprawdzenie czy użytkownik jest
-            async function getMultiple(db) {
-                // [START firestore_data_query]
-                const citiesRef = db.collection('users');
-                const snapshot = await citiesRef.where('email', '==', email).get();
-                if (snapshot.empty) {
-                    alert("No user");
-                    return;
-                }
-                snapshot.forEach(doc => {
-                    if ((doc.id, '=>', doc.data().password) === password) {
 
-                        alert("Log in");
-                        localStorage.setItem("login", true);
-                        localStorage.setItem("username", doc.data().username);
-                        localStorage.setItem("displayName", doc.data().firstName+" "+doc.data().lastName);
-                        //redirect
-                        history.push('/feed');
-                    } else {
-                        alert("No user");
-                    }
+
+            auth.signInWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    // Signed in
+                    var user = userCredential.user;
+
+                    //Stworzenie cookies
+                    const cookies = new Cookies();
+                    cookies.set('user', user, { path: '/',maxAge :1200 }); //dostępne na całej stronie, 20 minut
+                    //przekieruj do feeda
+                    history.push('/feed');
+                })
+                .catch((error) => {
+                    //nie udało się zalogować
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorCode, errorMessage)
                 });
-
-            }
-
-            getMultiple(db);
 
         } else {
             alert("podane hasła się nie zgadzaja/brak danych")
         }
-
 
         setEmail("");
         setPassword("");
@@ -72,10 +66,9 @@ function Login() {
 
             <button className="btn btn-primary btn-block" onClick={sendLogin}>Login</button>
             <div>
-                <p> Dont have a account ? <a href={"/register"}>Register</a> </p>
+                <p> Dont have a account ? <a href={"/register"}>Register</a></p>
             </div>
         </form>
-
 
 
     )

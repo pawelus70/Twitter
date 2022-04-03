@@ -15,24 +15,6 @@ import {Button} from "@material-ui/core";
 //Boczny pasek nawigacyjny z ikonami
 function Sidebar() {
 
-
-    if (localStorage.getItem('login') === true) {
-        return (
-            <div className="sidebar">
-                <TwitterIcon className="sidebar__twitterIcon"/>
-                <SidebarOption Icon={HomeIcon} text="Home" link="feed" active={true}/>
-                <SidebarOption Icon={SearchIcon} text="Explore"/>
-                <SidebarOption Icon={NotificationsNoneIcon} text="Notifications"/>
-                <SidebarOption Icon={MailOutlineIcon} text="Messages"/>
-                <SidebarOption Icon={PermIdentityIcon} text="Profile"/>
-                <SidebarOption Icon={PermIdentityIcon} text="Logout"/>
-                <SidebarOption Icon={MoreHorizIcon} text="More"/>
-                <Button variant="outlined" className="sidebar__tweet" fullWidth>
-                    Tweet
-                </Button>
-            </div>
-        );
-    } else {
         return (
             <div className="sidebar">
                 <TwitterIcon className="sidebar__twitterIcon"/>
@@ -42,12 +24,9 @@ function Sidebar() {
                 <SidebarOption Icon={MailOutlineIcon} text="Messages"/>
                 <SidebarOption Icon={PermIdentityIcon} text="Login" link="login"/>
                 <SidebarOption Icon={PermIdentityIcon} text="Register" link="register"/>
-                {/*
-             <SidebarOption Icon={PermIdentityIcon} text="Profile"/>
-              <SidebarOption Icon={PermIdentityIcon} text="Logout"/>
-            */}
+                <SidebarOption Icon={PermIdentityIcon} text="Profile" link="profile"/>
+                <SidebarOption Icon={PermIdentityIcon} text="Log out" link="logout"/>
                 <SidebarOption Icon={MoreHorizIcon} text="More"/>
-
                 <Button variant="outlined" className="sidebar__tweet" fullWidth>
                     Tweet
                 </Button>
@@ -57,6 +36,5 @@ function Sidebar() {
     }
 
 
-}
 
 export default Sidebar;

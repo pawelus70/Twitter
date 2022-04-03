@@ -1,6 +1,7 @@
 
 //Importujemy firebase
 import firebase from "firebase";
+
 //Config połączeniowy z bazą firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCsQ1PcFpTinnCHZ0QeatNofCqQcppbZUY",
@@ -16,5 +17,11 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 //Przypisanie połączenia
 const db = firebaseApp.firestore();
-export default db;
+const auth = firebaseApp.auth()
+
+export {
+    auth,
+    db
+}
+
 

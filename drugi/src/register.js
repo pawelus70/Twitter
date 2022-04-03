@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import db from "./firebase";
-import {useHistory} from "react-router-dom"
+import {db, auth} from "./firebase";
+import {useHistory} from "react-router-dom";
+import Cookies from 'universal-cookie';
 
 function Register() {
 
@@ -12,56 +13,53 @@ function Register() {
     const [repeatPassword, setRepeatPassword] = useState("");
     let history = useHistory();
 
+
     const sendRegister = (e) => {
 
 
         e.preventDefault()
 
-        //Dodanie użytkownika do bazy
+        //Sprawdzenie czy użytkownik wypełnił formularz poprawnie
         if (password === repeatPassword && email !== "" && firstName !== "" && lastName !== "" && username !== "" && password !== "") {
 
-            async function getMultiple(db) {
-                // [START firestore_data_query]
-                const citiesRef = db.collection('users');
-                const snapshot = await citiesRef.where('username', '==', username).get();
-
-                if (snapshot.empty) {
-                    console.log('No matching documents.');
-                    db.collection("users").add({
-                        email: email,
-                        firstName: firstName,
-                        lastName: lastName,
-                        username: username,
-                        password: password,
-
-                    });
-                    alert("Created: ", username)
+           auth.createUserWithEmailAndPassword(email, password, )
+                .then((userCredential) => {
+                    //stworzenie użytkownika firebase
+                    var user = userCredential.user;
+                    //dodanie więcej informacji o użytkowniku
+                    db.collection("users").doc(user.uid)
+                        .set({
+                            firstName: firstName,
+                            lastName: lastName,
+                            userName: username,
+                        })
+                    //Stworzenie cookies
+                    const cookies = new Cookies();
+                    cookies.set('user', user, { path: '/',maxAge :1200 }); //dostępne na całej stronie, 20 minut
+                    //przekieruj do feeda
                     history.push('/feed');
-                    return;
-
-                }
-
-                snapshot.forEach(doc => {
-                    alert("Email or username taken")
-                    //console.log(doc.id, '=>', doc.data());
-
+                })
+               //nieudana opracaja
+                .catch((error) => {
+                    //Wyłap błedy i daj allert
+                    var errorCode = error.code;
+                    var errorMessage = error.message;
+                    alert(errorCode,errorMessage)
                 });
-                // [END firestore_data_query]
-            }
-
-            getMultiple(db);
-
         } else {
+            //Daj alert jeśli hasło się nie zgadza
             alert("podane hasła się nie zgadzaja/brak danych")
+            setPassword("");
+            setRepeatPassword("");
         }
-
-        setFirstName("");
-        setLastName("");
-        setEmail("");
-        setUsername("");
-        setPassword("");
-        setRepeatPassword("");
-
+        //Czyszczenie formularza
+        /* setFirstName("");
+         setLastName("");
+         setEmail("");
+         setUsername("");
+         setPassword("");
+         setRepeatPassword("");
+ */
     }
 
 

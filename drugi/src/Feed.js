@@ -1,25 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import "./Feed.css";
 import Post from "./Post";
 import TweetBox from "./TweetBox";
-import db from "./firebase";
+import {db,auth} from "./firebase";
 import {useHistory} from "react-router-dom"
+import Cookies from 'universal-cookie';
 
 //Wstawianie postów na stronę
 function Feed() {
 
-   /* let history= useHistory();
-    if(localStorage.getItem("login") !== true ){
+
+    //pobierz cokiesy
+    const cookies = new Cookies();
+    var user = cookies.get('user')
+    //history push
+    let history = useHistory();
+
+    //autoryzacja
+    auth.onAuthStateChanged((user) => {
+        if (user) {
+
+            var uid = user.uid;
+            console.log("Zalogowano")
+            // ...
+
+        } else {
+            // User is signed out
+            // Przekieruj do logowania
+            alert("Sesja wygasła");
             history.push('/login');
-        }*/
+        }
+    });
 
-        const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState([]);
 
-        useEffect(() => {
-            db.collection("posts").onSnapshot((snapshot) => {
-                setPosts(snapshot.docs.map((doc) => doc.data()));
-            });
-        }, []);
+    //TODO :::: order by date
+    useEffect(() => {
+        db.collection("posts").onSnapshot((snapshot) => {
+            setPosts(snapshot.docs.map((doc) => doc.data()));
+        });
+    }, []);
 
 
     return (
@@ -27,7 +47,7 @@ function Feed() {
             <div className="feed__header">
                 <h2>Home</h2>
             </div>
-            <TweetBox />
+            <TweetBox/>
             {posts.map((post) => (
                 <Post
                     displayName={post.displayName}
