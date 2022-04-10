@@ -18,6 +18,7 @@ function Profile() {
             docRef.get().then((doc) => {
                 if (doc.exists) {
                     setProfile( doc.data());
+                    console.log('test');
                 } else {
 
                     console.log("No such document!");
