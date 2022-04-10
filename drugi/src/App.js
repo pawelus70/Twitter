@@ -7,6 +7,8 @@ import Widgets from "./Widgets";
 import Login from "./login";
 import Register from "./register";
 import Logout from "./logout";
+import Profile from "./profile";
+
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
 // Initialize Firebase Authentication and get a reference to the service
@@ -17,13 +19,14 @@ function App() {
     return (
         <BrowserRouter>
             <div className="app">
-                <Sidebar/>
+                <Sidebar/>`
 
                 <Switch>
                     <Route path={"/feed"} component={Feed}/>
                     <Route path={"/login"} component={Login}/>
                     <Route path={"/register"} component={Register}/>
                     <Route path={"/logout"} component={Logout}/>
+                    <Route path={"/profile"} component={Profile}/>
                 </Switch>
 
                 <Widgets/>

@@ -24,8 +24,12 @@ function Login() {
                     var user = userCredential.user;
 
                     //Stworzenie cookies
+                    const timestamp = new Date().getTime();
+                    const expire = timestamp + (60*3);
+                    const expireDate = new Date(expire)
                     const cookies = new Cookies();
-                    cookies.set('user', user, { path: '/',maxAge :1200 }); //dostępne na całej stronie, 20 minut
+                    cookies.set('user', user, { path: '/',expire:expireDate }); //dostępne na całej stronie, 20 minut
+                    console.log(cookies.get("user"));
                     //przekieruj do feeda
                     history.push('/feed');
                 })
