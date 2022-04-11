@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom"
 import {db, auth} from "./firebase";
-import Cookies from 'universal-cookie';
+
 
 
 function Login() {
@@ -27,9 +27,9 @@ function Login() {
                     const timestamp = new Date().getTime();
                     const expire = timestamp + (60*3);
                     const expireDate = new Date(expire)
-                    const cookies = new Cookies();
-                    cookies.set('user', user, { path: '/',expire:expireDate }); //dostępne na całej stronie, 20 minut
-                    console.log(cookies.get("user"));
+                    //const cookies = new Cookies();
+                    //cookies.set('user', user, { path: '/',expire:expireDate }); //dostępne na całej stronie, 20 minut
+                    //console.log(cookies.get("user"));
                     //przekieruj do feeda
                     history.push('/feed');
                 })

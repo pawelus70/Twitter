@@ -4,30 +4,32 @@ import Post from "./Post";
 import TweetBox from "./TweetBox";
 import {db,auth} from "./firebase";
 import {useHistory} from "react-router-dom"
-import Cookies from 'universal-cookie';
+
 
 //Wstawianie postów na stronę
 function Feed() {
 
-
-    //pobierz cokiesy
-    const cookies = new Cookies();
-    var user = cookies.get('user')
     //history push
     let history = useHistory();
 
     //autoryzacja
     auth.onAuthStateChanged((user) => {
+        //const cookies = new Cookies();
+        //const userr = cookies.get('user')
+        let sessionTimeout = null;
         if (user) {
 
-            var uid = user.uid;
-            console.log("Zalogowano")
-            // ...
+            //test z sesja
+            user.getIdTokenResult().then((idTokenResult) => { //Pobierz token użytkownaika i zmień
+                setTimeout(() => auth.signOut(), 10000); //Ustaw czas zakończenia dla połączenia (działanie czyli wyloguj, czas w ms)
+            } );
 
         } else {
+            sessionTimeout && clearTimeout(sessionTimeout);
+            sessionTimeout = null;
             // User is signed out
             // Przekieruj do logowania
-            alert("Sesja wygasła");
+            //alert("Sesja wygasła"); //Nie wiem dlaczego ale x razy wyskakuje że sesja wygasła pewnie przez ładowanie komponentów dlatego kom
             history.push('/login');
         }
     });

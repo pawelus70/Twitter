@@ -19,7 +19,7 @@ function App() {
     return (
         <BrowserRouter>
             <div className="app">
-                <Sidebar/>`
+                <Sidebar/>
 
                 <Switch>
                     <Route path={"/feed"} component={Feed}/>
