@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {useHistory} from "react-router-dom"
-import {db, auth} from "./firebase";
+import {db, auth} from "../DBconn/firebase";
 
-
+//TODO ::: Pamiętaj żeby zmienić autoryzacje na sesyjną nie cookies i do backu wdupc
 
 function Login() {
 

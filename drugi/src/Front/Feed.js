@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
-import "./Feed.css";
+import "./CSS/Feed.css";
 import Post from "./Post";
 import TweetBox from "./TweetBox";
-import {db,auth} from "./firebase";
+import {db,auth} from "../DBconn/firebase";
 import {useHistory} from "react-router-dom"
 
 
@@ -21,7 +21,7 @@ function Feed() {
 
             //test z sesja
             user.getIdTokenResult().then((idTokenResult) => { //Pobierz token użytkownaika i zmień
-                setTimeout(() => auth.signOut(), 10000); //Ustaw czas zakończenia dla połączenia (działanie czyli wyloguj, czas w ms)
+                setTimeout(() => auth.signOut(), 100000); //Ustaw czas zakończenia dla połączenia (działanie czyli wyloguj, czas w ms)
             } );
 
         } else {

@@ -1,5 +1,5 @@
 import React from "react";
-import "./SidebarOption.css";
+import "./CSS/SidebarOption.css";
 //Opcje bocznego pasku
 function SidebarOption({ text, Icon, link, active }) {
     return (

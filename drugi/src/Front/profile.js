@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {db, auth} from "./firebase";
+import {db, auth} from "../DBconn/firebase";
 import {useHistory} from "react-router-dom";
 
 

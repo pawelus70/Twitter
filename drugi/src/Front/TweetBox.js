@@ -1,7 +1,7 @@
 import {Avatar, Button} from "@material-ui/core";
 import React, {useState} from "react";
-import {db, auth} from "./firebase";
-import "./TweetBox.css";
+import {db, auth} from "../DBconn/firebase";
+import "./CSS/TweetBox.css";
 import {useHistory} from "react-router-dom"
 
 

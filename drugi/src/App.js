@@ -1,13 +1,13 @@
 import React from "react";
-import "./App.css";
+import "./Front/CSS/App.css";
 //Import elementów
-import Feed from "./Feed";
-import Sidebar from "./Sidebar";
-import Widgets from "./Widgets";
-import Login from "./login";
-import Register from "./register";
-import Logout from "./logout";
-import Profile from "./profile";
+import Feed from "./Front/Feed";
+import Sidebar from "./Front/Sidebar";
+import Widgets from "./Front/Widgets";
+import Login from "./Front/login";
+import Register from "./Front/register";
+import Logout from "./Front/logout";
+import Profile from "./Front/profile";
 
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
