@@ -2,12 +2,13 @@ import React, {useEffect, useState} from "react";
 import {db, auth} from "../DBconn/firebase";
 import {useHistory} from "react-router-dom";
 import Cookies from 'universal-cookie';
+import {registerB} from '../Back/registerB';
 
 function Register() {
 
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
-    const [username, setUsername] = useState("");
+    const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [repeatPassword, setRepeatPassword] = useState("");
@@ -19,32 +20,9 @@ function Register() {
         e.preventDefault()
 
         //Sprawdzenie czy użytkownik wypełnił formularz poprawnie
-        if (password === repeatPassword && email !== "" && firstName !== "" && lastName !== "" && username !== "" && password !== "") {
+        if (password === repeatPassword && email !== "" && firstName !== "" && lastName !== "" && userName !== "" && password !== "") {
+            registerB(email,password,firstName,lastName,userName);
 
-           auth.createUserWithEmailAndPassword(email, password, )
-                .then((userCredential) => {
-                    //stworzenie użytkownika firebase
-                    var user = userCredential.user;
-                    //dodanie więcej informacji o użytkowniku
-                    db.collection("users").doc(user.uid)
-                        .set({
-                            firstName: firstName,
-                            lastName: lastName,
-                            userName: username,
-                        })
-                    //Stworzenie cookies
-                    const cookies = new Cookies();
-                    cookies.set('user', user, { path: '/',maxAge :1200 }); //dostępne na całej stronie, 20 minut
-                    //przekieruj do feeda
-                    history.push('/feed');
-                })
-               //nieudana opracaja
-                .catch((error) => {
-                    //Wyłap błedy i daj allert
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    alert(errorCode,errorMessage)
-                });
         } else {
             //Daj alert jeśli hasło się nie zgadza
             alert("podane hasła się nie zgadzaja/brak danych")
@@ -81,8 +59,8 @@ function Register() {
             </div>
             <div className="form-group">
                 <label>Username</label>
-                <input value={username}
-                       onChange={(e) => setUsername(e.target.value)}
+                <input value={userName}
+                       onChange={(e) => setUserName(e.target.value)}
                        placeholder="Username"
                        type="text"/>
             </div>
