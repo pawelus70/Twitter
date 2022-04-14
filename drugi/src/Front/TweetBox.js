@@ -15,36 +15,35 @@ function TweetBox() {
 
     //dodanie posta
     const sendTweet = (e) => {
+        //zapobieganie przeładowania strony
         e.preventDefault();
+
         //autoryazajca użytkownika
         auth.onAuthStateChanged((user) => {
             if (user) {
-
+                //pobierz dodatkowe dane o uzytkowniku na podstawie tokena
                 var docRef = db.collection("users").doc(user.uid);
                 docRef.get().then((doc) => {
+                    //jeśli użytkownik istnieje
                     if (doc.exists) {
-                        console.log(doc.data().firstName);
+                        // dodaj posta z pobranymi danymi
                         db.collection("posts").add({
                             username: doc.data().firstName+" "+doc.data().lastName,
                             displayName: doc.data().userName,
-                            avatar:
-                                "https://scontent-bom1-1.xx.fbcdn.net/v/t1.0-1/c0.33.200.200a/p200x200/51099653_766820610355014_8315780769297465344_o.jpg?_nc_cat=101&_nc_sid=7206a8&_nc_ohc=c1qBHkwAgVsAX8KynKU&_nc_ht=scontent-bom1-1.xx&oh=340b05bea693dd1671296e0c2d004bb3&oe=5F84CA62",
+                            avatar: doc.data().avatar,
                             verified: true,
                             text: tweetMessage,
                             image: tweetImage,
                             date: Date.now()
                         });
-
                     } else {
-                        // doc.data() will be undefined in this case
-                        console.log("No such document!");
+                        // brak dodatkowych danych o użytkowniku
+                        console.log("Bład ");
                     }
                 }).catch((error) => {
                     console.log("Error getting document:", error);
                 });
-
-                //testowy wpis użytkownika happystark
-
+                //wyczyść textboxy
                 setTweetMessage("");
                 setTweetImage("");
 

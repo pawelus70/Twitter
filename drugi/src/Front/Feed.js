@@ -14,22 +14,19 @@ function Feed() {
 
     //autoryzacja
     auth.onAuthStateChanged((user) => {
-        //const cookies = new Cookies();
-        //const userr = cookies.get('user')
+
         let sessionTimeout = null;
         if (user) {
-
             //test z sesja
             user.getIdTokenResult().then((idTokenResult) => { //Pobierz token użytkownaika i zmień
                 setTimeout(() => auth.signOut(), 100000); //Ustaw czas zakończenia dla połączenia (działanie czyli wyloguj, czas w ms)
             } );
 
         } else {
+            // Przekieruj do logowania
             sessionTimeout && clearTimeout(sessionTimeout);
             sessionTimeout = null;
             // User is signed out
-            // Przekieruj do logowania
-            //alert("Sesja wygasła"); //Nie wiem dlaczego ale x razy wyskakuje że sesja wygasła pewnie przez ładowanie komponentów dlatego kom
             history.push('/login');
         }
     });
@@ -37,6 +34,7 @@ function Feed() {
     const [posts, setPosts] = useState([]);
 
     //TODO :::: order by date
+    //Wrcuź posty na stronę
     useEffect(() => {
         db.collection("posts").onSnapshot((snapshot) => {
             setPosts(snapshot.docs.map((doc) => doc.data()));

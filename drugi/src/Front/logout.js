@@ -3,9 +3,7 @@ import {logoutB} from "../Back/logoutb";
 
 
 function Logout() {
-    // const cookies = new Cookies();
-    // // nie działa sprawdzić czemu ....
-    // cookies.set('user',null, {path: '/'});
+    //wylogowanie
     logoutB();
     alert("wylogowano");
     return (

@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
-import {useHistory} from "react-router-dom"
 import {db, auth} from "../DBconn/firebase";
+import {loginB} from "../Back/loginB"
+import {useHistory} from "react-router-dom"
 
 //TODO ::: Pamiętaj żeby zmienić autoryzacje na sesyjną nie cookies i do backu wdupc
 
@@ -8,40 +9,19 @@ function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    let history = useHistory();
 
+    let history = useHistory()
 
     const sendLogin = (e) => {
         e.preventDefault()
 
         //sprawdzenie czy użytwkonik uzupełnił pola
         if (email !== "" && password !== "") {
-
-
-            auth.signInWithEmailAndPassword(email, password)
-                .then((userCredential) => {
-                    // Signed in
-                    var user = userCredential.user;
-
-                    //Stworzenie cookies
-                    const timestamp = new Date().getTime();
-                    const expire = timestamp + (60*3);
-                    const expireDate = new Date(expire)
-                    //const cookies = new Cookies();
-                    //cookies.set('user', user, { path: '/',expire:expireDate }); //dostępne na całej stronie, 20 minut
-                    //console.log(cookies.get("user"));
-                    //przekieruj do feeda
-                    history.push('/feed');
-                })
-                .catch((error) => {
-                    //nie udało się zalogować
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    alert(errorCode, errorMessage)
-                });
-
+            //Logowanie użytkownika
+            loginB(email, password);
+            alert("zalogowano")
         } else {
-            alert("podane hasła się nie zgadzaja/brak danych")
+            alert("Uzupełnij pola ")
         }
 
         setEmail("");

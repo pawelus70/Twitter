@@ -8,6 +8,7 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import "./CSS/Post.css";
+
 //Tworzenie postów wyświetlające wszystkie dane
 function Post({ displayName, username, verified, text, image, avatar }) {
     return (

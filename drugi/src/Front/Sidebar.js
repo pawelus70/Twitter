@@ -25,6 +25,7 @@ function Sidebar() {
 
             <SidebarOption Icon={PermIdentityIcon} text="Profile" link="profile"/>
             <SidebarOption Icon={PermIdentityIcon} text="Log out" link="logout"/>
+
             <SidebarOption Icon={PermIdentityIcon} text="Login" link="login"/>
             <SidebarOption Icon={PermIdentityIcon} text="Register" link="register"/>
 

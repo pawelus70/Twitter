@@ -13,7 +13,6 @@ function Register() {
     const [repeatPassword, setRepeatPassword] = useState("");
     let history = useHistory();
 
-
     const sendRegister = (e) => {
 
 
