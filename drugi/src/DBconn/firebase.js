@@ -17,7 +17,7 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 //Przypisanie połączenia
 const db = firebaseApp.firestore(); //Posty
-const auth = firebaseApp.auth()
+const auth = firebaseApp.auth();
 
 export {
     auth,

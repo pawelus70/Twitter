@@ -1,14 +1,12 @@
 import {logoutB} from "../Back/logoutb";
-
+import {Redirect} from "react-router-dom"
 
 
 function Logout() {
     //wylogowanie
     logoutB();
-    alert("wylogowano");
     return (
-        <p>logout</p>
-
+        <Redirect to={'/Loginn'}/>
     )
 }
 

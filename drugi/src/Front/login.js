@@ -10,7 +10,7 @@ function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    let history = useHistory()
+    let history = useHistory();
 
     const sendLogin = (e) => {
         e.preventDefault()

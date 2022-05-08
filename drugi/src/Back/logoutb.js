@@ -2,10 +2,10 @@ import {auth} from "../DBconn/firebase";
 
 function logoutB()
 {
-    const wyloguj = auth.onAuthStateChanged((user) => {
-        user.getIdTokenResult().then((idTokenResult) => { //Pobierz token użytkownaika i zmień
-            auth.signOut(); //Wyloguj użytkownika
-        });
+    const wyloguj = auth.signOut().then(() => {
+        // Sign-out successful.
+    }).catch((error) => {
+        // An error happened.
     });
 }
 export {logoutB}

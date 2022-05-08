@@ -27,7 +27,7 @@ function Feed() {
             sessionTimeout && clearTimeout(sessionTimeout);
             sessionTimeout = null;
             // User is signed out
-            history.push('/login');
+            history.push('/Loginn');
         }
     });
 

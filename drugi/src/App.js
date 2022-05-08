@@ -4,10 +4,13 @@ import "./Front/CSS/App.css";
 import Feed from "./Front/Feed";
 import Sidebar from "./Front/Sidebar";
 import Widgets from "./Front/Widgets";
-import Login from "./Front/login";
-import Register from "./Front/register";
+// import Login from "./Front/login";
+import Loginn from "./Front/Loginn";
+// import Register from "./Front/register";
+import Registern from "./Front/Registern";
 import Logout from "./Front/logout";
 import Profile from "./Front/profile";
+
 
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
 
@@ -19,17 +22,44 @@ function App() {
     return (
         <BrowserRouter>
             <div className="app">
-                <Sidebar/>
+                {/*<Loginn/>*/}
+                {/*<Sidebar/>*/}
+
+                {/*<Route path={"/Loginn"} component={Loginn}/>*/}
+                {/*<Route path={"/Registern"} component={Registern}/>*/}
 
                 <Switch>
-                    <Route path={"/feed"} component={Feed}/>
-                    <Route path={"/login"} component={Login}/>
-                    <Route path={"/register"} component={Register}/>
-                    <Route path={"/logout"} component={Logout}/>
-                    <Route path={"/profile"} component={Profile}/>
+                    <Route exact path="/">
+                        <Sidebar/>
+                        <Feed/>
+                        <Widgets/>
+                    </Route>
+                    <Route path="/logout">
+                        <Logout/>
+                    </Route>
+                    <Route path="/profile">
+                        <Sidebar/>
+                        <Profile/>
+                        <Widgets/>
+                    </Route>
+                    <Route path="/Loginn">
+                        <Loginn />
+                    </Route>
+                    <Route path="/Registern">
+                        <Registern />
+                    </Route>
                 </Switch>
 
-                <Widgets/>
+
+                {/*<Switch>*/}
+                {/*    <Route path={"/feed"} component={Feed}/>*/}
+                {/*    <Route path={"/login"} component={Login}/>*/}
+                {/*    <Route path={"/register"} component={Register}/>*/}
+                {/*    <Route path={"/logout"} component={Logout}/>*/}
+                {/*    <Route path={"/profile"} component={Profile}/>*/}
+                {/*</Switch>*/}
+
+                {/*<Widgets/>*/}
             </div>
         </BrowserRouter>
 
