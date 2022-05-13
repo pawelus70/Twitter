@@ -4,16 +4,16 @@ import {useHistory} from "react-router-dom"
 
 
 
-function loginB (email, password)
+function LoginB (email, password)
 {
 
-   //let history = useHistory();
+  // let history = useHistory();
     auth.signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
             // Signed in
             //przekieruj do feeda
             //history.push('/');
-            return true;
+
         })
         .catch((error) => {
             //nie udało się zalogować
@@ -21,8 +21,8 @@ function loginB (email, password)
             var errorMessage = error.message;
             //Wyświetl komunikat o problemie
             alert(errorCode, errorMessage)
-            return false;
+
         });
 
 }
-export {loginB};
+export {LoginB};

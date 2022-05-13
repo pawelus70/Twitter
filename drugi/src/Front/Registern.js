@@ -26,6 +26,14 @@ function Registern() {
         if (password === repeatPassword && email !== "" && firstName !== "" && lastName !== "" && userName !== "" && password !== "") {
             registerB(email,password,firstName,lastName,userName);
 
+            auth.onAuthStateChanged((user) => {  //Przekierowanie po zalogowaniu
+
+                let sessionTimeout = null;
+                if (user) {
+                    history.push('/');
+                }
+            });
+
         } else {
             //Daj alert jeśli hasło się nie zgadza
             alert("podane hasła się nie zgadzaja/brak danych")

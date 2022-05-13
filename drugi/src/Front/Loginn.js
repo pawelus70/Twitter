@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {db, auth} from "../DBconn/firebase";
-import {loginB} from "../Back/loginB"
+import {LoginB} from "../Back/loginB"
 import {useHistory} from "react-router-dom"
 
 import "./CSS/Login.css";
@@ -18,17 +18,17 @@ function Loginn() {
         //sprawdzenie czy użytwkonik uzupełnił pola
         if (email !== "" && password !== "") {
             //Logowanie użytkownika
-            loginB(email, password);
-            //history.push('/');
-            alert("zalogowano")
+            LoginB(email, password)
+                //history.push('/');
+                alert("zalogowano")
 
-            auth.onAuthStateChanged((user) => {  //Przekierowanie po zalogowaniu
+                auth.onAuthStateChanged((user) => {  //Przekierowanie po zalogowaniu
 
-                let sessionTimeout = null;
-                if (user) {
-                    history.push('/');
-                }
-            });
+                    let sessionTimeout = null;
+                    if (user) {
+                        history.push('/');
+                    }
+                });
 
         } else {
             alert("Uzupełnij pola ")

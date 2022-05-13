@@ -56,7 +56,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../chat/chat-example" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
@@ -103,6 +103,16 @@
       <workItem from="1652003924938" duration="222000" />
       <workItem from="1652004538437" duration="12481000" />
       <workItem from="1652018321834" duration="197000" />
+      <workItem from="1652018692511" duration="432000" />
+      <workItem from="1652096052683" duration="2999000" />
+      <workItem from="1652099283600" duration="14306000" />
+      <workItem from="1652123630978" duration="424000" />
+      <workItem from="1652190726396" duration="1155000" />
+      <workItem from="1652203651488" duration="599000" />
+      <workItem from="1652277375477" duration="614000" />
+      <workItem from="1652295138093" duration="991000" />
+      <workItem from="1652296815953" duration="485000" />
+      <workItem from="1652446297211" duration="72000" />
     </task>
     <servers />
   </component>

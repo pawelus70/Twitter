@@ -19,7 +19,7 @@ function Feed() {
         if (user) {
             //test z sesja
             user.getIdTokenResult().then((idTokenResult) => { //Pobierz token użytkownaika i zmień
-                setTimeout(() => auth.signOut(), 100000); //Ustaw czas zakończenia dla połączenia (działanie czyli wyloguj, czas w ms)
+                setTimeout(() => auth.signOut(), 1000000); //Ustaw czas zakończenia dla połączenia (działanie czyli wyloguj, czas w ms)
             } );
 
         } else {
@@ -35,12 +35,23 @@ function Feed() {
 
     //TODO :::: order by date
     //Wrcuź posty na stronę
+
     useEffect(() => {
-        db.collection("posts").onSnapshot((snapshot) => {
+        db.collection("posts").orderBy("date", "desc").onSnapshot((snapshot) => {
             setPosts(snapshot.docs.map((doc) => doc.data()));
         });
     }, []);
 
+    // useEffect(
+    //     () =>
+    //         onSnapshot(
+    //             query(collection(db, "posts"), orderBy("date", "desc")),
+    //             (snapshot) => {
+    //                 setPosts(snapshot.docs);
+    //             }
+    //         ),
+    //     [db]
+    // );
 
     return (
         <div className="feed">
@@ -56,6 +67,7 @@ function Feed() {
                     text={post.text}
                     avatar={post.avatar}
                     image={post.image}
+                    id={post.id} //id postu
                 />
             ))}
         </div>

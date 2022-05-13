@@ -27,8 +27,9 @@ function TweetBox() {
                     //jeśli użytkownik istnieje
                     if (doc.exists) {
                         // dodaj posta z pobranymi danymi
-                        db.collection("posts").add({
+                        db.collection("posts").doc(user.uid + Date.now()).set({    //********Id postów od teraz składają się z UID + DataUTC*********/////////
                             username: doc.data().firstName+" "+doc.data().lastName,
+                            id: user.uid + Date.now(),
                             displayName: doc.data().userName,
                             avatar: doc.data().avatar,
                             verified: true,
@@ -55,7 +56,7 @@ function TweetBox() {
             }
         });
     }
-
+//
 
 //Okno dodawania postu z zawartością i obrazkiem w postaci url
     return (
