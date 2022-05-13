@@ -56,20 +56,21 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/drugi/src/Back" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/drugi/src/atoms" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\AGH\ZTI\Twitter\drugi\src\atoms" />
       <recent name="C:\AGH\ZTI\Twitter\drugi\src\Back" />
       <recent name="C:\AGH\ZTI\Twitter\drugi\src\Front" />
       <recent name="C:\AGH\ZTI\Twitter\drugi\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Paweł\Desktop\Twot\Twotter\Twitter\drugi\src\Front" />
       <recent name="C:\Users\Paweł\Desktop\Twot\Twotter\Twitter\drugi\src" />
+      <recent name="C:\Users\Paweł\Desktop\Twot\Twotter\Twitter\drugi\src\Front" />
       <recent name="C:\Users\Paweł\Desktop\Twot\Twotter\Twitter\drugi\src\DBconn" />
     </key>
   </component>
@@ -115,7 +116,7 @@
       <workItem from="1652295138093" duration="991000" />
       <workItem from="1652296815953" duration="485000" />
       <workItem from="1652446297211" duration="72000" />
-      <workItem from="1652447771189" duration="1727000" />
+      <workItem from="1652447771189" duration="7755000" />
     </task>
     <servers />
   </component>

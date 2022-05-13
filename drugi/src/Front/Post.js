@@ -1,8 +1,11 @@
 import { Avatar } from "@material-ui/core";
 import {db, auth} from "../DBconn/firebase";
 import { useEffect, useState } from "react";
+//import { useRecoilState } from "recoil";
+//import { modalState, postIdState } from "../atoms/modalAtom";
 import {
     ChatBubbleOutline,
+    Chat,
     FavoriteBorder,
     Favorite,
     Publish,
@@ -11,6 +14,7 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import "./CSS/Post.css";
+
 
 var usid; //Przechowuje uid trochę odciąża system
 
@@ -23,8 +27,11 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
         //Stany
         const [likes, setLikes] = useState([]);
         const [liked, setLiked] = useState(false);
+        const [comments, setComments] = useState([]);
+        //const [isOpen, setIsOpen] = useRecoilState(modalState);
 
-        //Do polubienia
+
+    //Do polubienia
         useEffect(() => {
             db.collection("posts").doc(id).collection("likes").onSnapshot((snapshot) => {
                 setLikes(snapshot.docs);
@@ -65,9 +72,42 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
 
 
         }
-
-
     }
+
+    //wczytaj i zlicz komentarze
+    useEffect(() => {
+        db.collection("posts").doc(id).collection("comments").onSnapshot((snapshot) => {
+            setComments(snapshot.docs);
+        });
+    }, [db, id]);
+
+    //dodanie komentarza
+    const AddComment = async() => {
+        var komentarz = prompt("daj komentarz");
+        auth.onAuthStateChanged((user) => {
+            if (user){
+                var docRef = db.collection("users").doc(usid);
+                docRef.get().then((doc) => {
+                    //jeśli użytkownik istnieje
+                    if (doc.exists) {
+                        // dodaj posta z pobranymi danymi
+                        db.collection("posts").doc(id).collection("comments").doc(usid).set({    //********Id postów od teraz składają się z UID + DataUTC*********/////////
+                            username: doc.data().firstName + " " + doc.data().lastName,
+                            id: usid + Date.now(),
+                            displayName: doc.data().userName,
+                            avatar: doc.data().avatar,
+                            text: komentarz,
+                            date: Date.now()
+                        });
+                    } else {
+                        // brak dodatkowych danych o użytkowniku
+                        console.log("Bład ");
+                    };
+            });
+            };
+        });
+    };
+
     return (
         <div className="post">
             <div className="post__avatar">
@@ -90,7 +130,22 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                 </div>
                 <img src={image} alt="" />
                 <div className="post__footer">
-                    <ChatBubbleOutline fontSize="small" />
+                    <div className="Komentarz"
+                         onClick={(e) => {
+                             e.stopPropagation();
+                             AddComment();
+                         }}>
+                        {comments.length>0 ? (
+                                <Chat fontSize="small"/>
+                        ) : (
+                            <ChatBubbleOutline fontSize="small"/>
+                        )}
+                        {comments.length > 0 && (
+                            <span>
+                                {comments.length}
+                            </span>
+                        )}
+                    </div>
                     <Repeat fontSize="small" />
                     <div className="Polubienie"
                         onClick={(e) => {
