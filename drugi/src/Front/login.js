@@ -51,6 +51,7 @@ function Login() {
             <button className="btn btn-primary btn-block" onClick={sendLogin}>Login</button>
             <div>
                 <p> Dont have a account ? <a href={"/register"}>Register</a></p>
+                <p> Forget password ? <a href={"/reset"}>Reset</a></p>
             </div>
         </form>
 

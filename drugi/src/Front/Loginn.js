@@ -72,7 +72,8 @@ function Loginn() {
 
 
             <div id="formFooter">
-                <a className="underlineHover" href={"/Registern"}>Nie posiadasz jeszcze konta?</a>
+                <a className="underlineHover" href={"/Registern"}>Nie posiadasz jeszcze konta?</a><br/>
+                <a className="underlineHover" href={"/reset"}>Zapomniałeś hasła?</a>
             </div>
 
         </div>

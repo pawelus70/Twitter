@@ -10,6 +10,7 @@ import Loginn from "./Front/Loginn";
 import Registern from "./Front/Registern";
 import Logout from "./Front/logout";
 import Profile from "./Front/profile";
+import RPassword from "./Front/rPassword"
 
 
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
@@ -47,6 +48,9 @@ function App() {
                     </Route>
                     <Route path="/Registern">
                         <Registern />
+                    </Route>
+                    <Route path="/reset">
+                        <RPassword />
                     </Route>
                 </Switch>
 
