@@ -17,7 +17,7 @@ function Modal({ setOpenModal,activePostID }) {
 
     useEffect(() => {
         db.collection("posts").doc(id).collection("comments").orderBy("date", "desc").onSnapshot((snapshot) => {
-            console.log(snapshot.docs);
+
             setComments(snapshot.docs.map((doc) => doc.data()));
         });
     }, []);
@@ -34,7 +34,7 @@ function Modal({ setOpenModal,activePostID }) {
     });
     //dodanie komentarza
     const AddComment = async() => {
-       
+
         auth.onAuthStateChanged((user) => {
             if (user){
                 var docRef = db.collection("users").doc(usid);
@@ -64,45 +64,39 @@ function Modal({ setOpenModal,activePostID }) {
 
             <div className="modalContainer">
                 <div className="titleCloseBtn">
-                    {/*<button
+                    <button
                         onClick={() => {
                             setOpenModal(false);
                         }}
                     >
                         X
-                    </button>*/}
-                    {comments.map((comment) => (
-                        <Comment
-                            displayName={comment.displayName}
-                            username={comment.username}
-                            text={comment.text}
-                            avatar={comment.avatar}
-                            id={comment.id} //id postu
-                        />
-                    ))}
-                </div>
+                    </button>
 
-                <div className="footer">
+                </div>
+                <div className="commentsContainer" >
+                {comments.map((comment) => (
+                    <Comment
+                        displayName={comment.displayName}
+                        username={comment.username}
+                        text={comment.text}
+                        avatar={comment.avatar}
+                        id={comment.id} //id postu
+                    />
+                ))}
+                </div>
+                <div className="comment__input">
                     <input
                         value={commentMessage}
                         onChange={(e) => setCommentMessage(e.target.value)}
-                        placeholder="What's happening?"
+                        placeholder="Comment"
                         type="text"
                     />
-                    <button
-                        onClick={() => {
-                            setOpenModal(false);
-                        }}
-                        id="cancelBtn"
-                    >
-                        Cancel
-                    </button>
-                    <button
+                    <button class="MuiButtonBase-root MuiButton-root MuiButton-text tweetBox__button"
                         onClick={(e) => {
                             e.stopPropagation();
                             AddComment();
                         }}>
-                    Continue</button>
+                    Comment</button>
                 </div>
             </div>
 

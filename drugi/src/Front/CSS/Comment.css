@@ -4,7 +4,8 @@
 }
 .comment {
     display: flex;
-    align-items: flex-start;
+    align-items: normal;
+
     border-bottom: 1px solid var(--twitter-backgroung);
 
 }
@@ -25,6 +26,7 @@
 .comment__headerDescription {
     font-size: 15px;
     margin-bottom: 20px;
+    word-break: break-all
 }
 .comment__body {
     flex: 1;
@@ -32,4 +34,23 @@
 }
 .comment__avatar {
     padding: 20px;
+}
+
+.comment > form {
+    display: flex;
+    flex-direction: column;
+}
+.comment__input {
+    margin: 5px 10px;
+    display: flex;
+    padding: 0px;
+}
+.comment__input > input {
+    flex: 1;
+    margin-left: 0px;
+    font-size: 20px;
+    border: none;
+}
+.comment__input > input:focus {
+    outline: none;
 }
