@@ -20,7 +20,7 @@ function Loginn() {
             //Logowanie użytkownika
             LoginB(email, password)
                 //history.push('/');
-                alert("zalogowano")
+                //alert("zalogowano")
 
                 auth.onAuthStateChanged((user) => {  //Przekierowanie po zalogowaniu
 

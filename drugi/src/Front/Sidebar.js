@@ -10,7 +10,10 @@ import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import ListAltIcon from "@material-ui/icons/ListAlt";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import CancelIcon from '@material-ui/icons/Cancel';
 import {Button} from "@material-ui/core";
+ // import {Logout} from "@material-ui/icons";
+
 
 //Boczny pasek nawigacyjny z ikonami
 function Sidebar() {
@@ -24,7 +27,7 @@ function Sidebar() {
             <SidebarOption Icon={MailOutlineIcon} text="Messages"/>
 
             <SidebarOption Icon={PermIdentityIcon} text="Profile" link="profile"/>
-            <SidebarOption Icon={PermIdentityIcon} text="Log out" link="logout"/>
+            <SidebarOption Icon={CancelIcon} text="Logout" link="logout"/>
 
             {/*<SidebarOption Icon={PermIdentityIcon} text="Login" link="login"/>*/}
             {/*<SidebarOption Icon={PermIdentityIcon} text="Register" link="register"/>*/}
