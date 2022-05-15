@@ -13,6 +13,11 @@ function registerB(email, password, firstName, lastName, userName) {
                     userName: userName,
                 })
             alert("register")
+            auth.currentUser.sendEmailVerification()
+                .then(() => {
+                    // Email verification sent!
+                    // ...
+                });
             //history.push('/feed');
         })
         //nieudana opracaja

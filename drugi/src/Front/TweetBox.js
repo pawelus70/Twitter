@@ -22,7 +22,7 @@ function TweetBox() {
             if (user) {
                 //pobierz dodatkowe dane o uzytkowniku na podstawie tokena
                 var docRef = db.collection("users").doc(user.uid);
-                
+
                 docRef.get().then((doc) => {
                     //jeśli użytkownik istnieje
                     if (doc.exists) {
