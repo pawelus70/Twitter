@@ -34,7 +34,7 @@ function Modal({ setOpenModal,activePostID }) {
     });
     //dodanie komentarza
     const AddComment = async() => {
-        var komentarz = prompt("daj komentarz"+ id);
+       
         auth.onAuthStateChanged((user) => {
             if (user){
                 var docRef = db.collection("users").doc(usid);
