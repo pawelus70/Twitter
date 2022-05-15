@@ -50,6 +50,7 @@ function Modal({ setOpenModal,activePostID }) {
                             text: commentMessage,
                             date: Date.now()
                         });
+                        setCommentMessage("");
                     } else {
                         // brak dodatkowych danych o użytkowniku
                         console.log("Bład ");
