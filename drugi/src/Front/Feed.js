@@ -32,6 +32,7 @@ function Feed() {
     });
 
     const [posts, setPosts] = useState([]);
+    //const [users, setUsers] = useState([]);
 
     //TODO :::: order by date
     //Wrcuź posty na stronę
@@ -40,7 +41,15 @@ function Feed() {
         db.collection("posts").orderBy("date", "desc").onSnapshot((snapshot) => {
             setPosts(snapshot.docs.map((doc) => doc.data()));
         });
+
     }, []);
+
+    //test
+    // useEffect(() => {
+    // db.collection("users").onSnapshot((snapshot) => {
+    //     setUsers(snapshot.docs.map((doc) => doc.data()));
+    // });
+    // }, []);
 
     // useEffect(
     //     () =>

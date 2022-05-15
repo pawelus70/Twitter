@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {db, auth} from "../DBconn/firebase";
 import {useHistory} from "react-router-dom";
 import {Avatar, Button} from "@material-ui/core";
+import "./CSS/Profile.css";
 
 
 function Profile() {
@@ -40,13 +41,19 @@ function Profile() {
     const [profile, setProfile] = useState([]);
 
     return (
-        <div>
-            <p>Profile</p>
-            <p>firstName:{profile.firstName}</p>
-            <p>lastName:{profile.lastName}</p>
-            <p>userName:{profile.userName}</p>
-            <Avatar
-                src={profile.avatar}/>
+        <div className="profile">
+            <div className="profile__title">
+                <h2>Profile</h2>
+            </div>
+                <div className="profile__avatar">
+                    <img src={profile.avatar}/>
+                </div>
+            <div className="profile__data">
+            <h3>{profile.userName}</h3>
+            <p>Imie: {profile.firstName}</p>
+            <p>Nazwisko: {profile.lastName}</p>
+            </div>
+
 
         </div>
     )
