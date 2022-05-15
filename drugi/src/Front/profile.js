@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {db, auth} from "../DBconn/firebase";
 import {useHistory} from "react-router-dom";
-
+import {Avatar, Button} from "@material-ui/core";
 
 
 function Profile() {
@@ -45,7 +45,9 @@ function Profile() {
             <p>firstName:{profile.firstName}</p>
             <p>lastName:{profile.lastName}</p>
             <p>userName:{profile.userName}</p>
-            <img src={profile.avatar} alt={'avatar'}/>
+            <Avatar
+                src={profile.avatar}/>
+
         </div>
     )
 }
