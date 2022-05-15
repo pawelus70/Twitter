@@ -14,6 +14,8 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import "./CSS/Post.css";
+import Modal from "./Modal.js";
+
 
 
 var usid; //Przechowuje uid trochę odciąża system
@@ -29,7 +31,8 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
         const [liked, setLiked] = useState(false);
         const [comments, setComments] = useState([]);
         //const [isOpen, setIsOpen] = useRecoilState(modalState);
-
+        //const [postId, setPostId] = useRecoilState(postIdState);
+        const [modalOpen, setModalOpen] = useState(false);
 
     //Do polubienia
         useEffect(() => {
@@ -81,32 +84,7 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
         });
     }, [db, id]);
 
-    //dodanie komentarza
-    const AddComment = async() => {
-        var komentarz = prompt("daj komentarz");
-        auth.onAuthStateChanged((user) => {
-            if (user){
-                var docRef = db.collection("users").doc(usid);
-                docRef.get().then((doc) => {
-                    //jeśli użytkownik istnieje
-                    if (doc.exists) {
-                        // dodaj posta z pobranymi danymi
-                        db.collection("posts").doc(id).collection("comments").doc(usid).set({    //********Id postów od teraz składają się z UID + DataUTC*********/////////
-                            username: doc.data().firstName + " " + doc.data().lastName,
-                            id: usid + Date.now(),
-                            displayName: doc.data().userName,
-                            avatar: doc.data().avatar,
-                            text: komentarz,
-                            date: Date.now()
-                        });
-                    } else {
-                        // brak dodatkowych danych o użytkowniku
-                        console.log("Bład ");
-                    };
-            });
-            };
-        });
-    };
+
 
     return (
         <div className="post">
@@ -133,7 +111,10 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                     <div className="Komentarz"
                          onClick={(e) => {
                              e.stopPropagation();
-                             AddComment();
+                            // AddComment();
+                             setModalOpen(true);
+                             //setPostId(id);
+                             //setIsOpen(true);
                          }}>
                         {comments.length>0 ? (
                                 <Chat fontSize="small"/>
@@ -145,6 +126,7 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                                 {comments.length}
                             </span>
                         )}
+
                     </div>
                     <Repeat fontSize="small" />
                     <div className="Polubienie"
@@ -163,8 +145,11 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                             </span>
                         )}
                     </div>
+
                     <Publish fontSize="small" />
+
                 </div>
+                {modalOpen && <Modal setOpenModal={setModalOpen} activePostID={id}/>}
             </div>
         </div>
     );
