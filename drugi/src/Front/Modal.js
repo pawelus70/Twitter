@@ -3,38 +3,23 @@ import "./CSS/Modal.css";
 import {db, auth} from "../DBconn/firebase";
 import Comment from "./Comment.js";
 
-
 var usid;
 
-
-
 function Modal({ setOpenModal,activePostID }) {
-
     const [comments, setComments] = useState([]);
     const [commentMessage, setCommentMessage] = useState("");
-    //TODO :::: order by date
     //Wrcuź posty na stronę
-
     useEffect(() => {
         db.collection("posts").doc(id).collection("comments").orderBy("date", "desc").onSnapshot((snapshot) => {
-
             setComments(snapshot.docs.map((doc) => doc.data()));
         });
     }, []);
-
-
-
-
-
-
     var id=activePostID;
-
     auth.onAuthStateChanged((user) => {
         usid=user.uid;
     });
     //dodanie komentarza
     const AddComment = async() => {
-
         auth.onAuthStateChanged((user) => {
             if (user){
                 var docRef = db.collection("users").doc(usid);
@@ -60,9 +45,7 @@ function Modal({ setOpenModal,activePostID }) {
         });
     };
 
-
     return (
-
             <div className="modalContainer">
                 <div className="titleCloseBtn">
                     <button
@@ -72,7 +55,6 @@ function Modal({ setOpenModal,activePostID }) {
                     >
                         X
                     </button>
-
                 </div>
                 <div className="commentsContainer" >
                 {comments.map((comment) => (
@@ -100,7 +82,6 @@ function Modal({ setOpenModal,activePostID }) {
                     Comment</button>
                 </div>
             </div>
-
     );
 }
 

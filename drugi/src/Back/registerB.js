@@ -13,7 +13,6 @@ function registerB(email, password, firstName, lastName, userName) {
                     userName: userName,
                 })
             alert("register")
-            //history.push('/feed');
         })
         //nieudana opracaja
         .catch((error) => {
@@ -23,6 +22,4 @@ function registerB(email, password, firstName, lastName, userName) {
             alert(errorCode, errorMessage)
         });
 }
-
-
 export {registerB};

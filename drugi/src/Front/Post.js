@@ -1,8 +1,6 @@
 import { Avatar } from "@material-ui/core";
 import {db, auth} from "../DBconn/firebase";
 import { useEffect, useState } from "react";
-//import { useRecoilState } from "recoil";
-//import { modalState, postIdState } from "../atoms/modalAtom";
 import {
     ChatBubbleOutline,
     Chat,
@@ -16,13 +14,10 @@ import React from "react";
 import "./CSS/Post.css";
 import Modal from "./Modal.js";
 
-
-
 var usid; //Przechowuje uid trochę odciąża system
 
 //Tworzenie postów wyświetlające wszystkie dane
 function Post({ displayName, username, verified, text, image, avatar, id }) {
-
         auth.onAuthStateChanged((user) => {
             usid=user.uid;
         });
@@ -30,17 +25,13 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
         const [likes, setLikes] = useState([]);
         const [liked, setLiked] = useState(false);
         const [comments, setComments] = useState([]);
-        //const [isOpen, setIsOpen] = useRecoilState(modalState);
-        //const [postId, setPostId] = useRecoilState(postIdState);
         const [modalOpen, setModalOpen] = useState(false);
-
     //Do polubienia
         useEffect(() => {
             db.collection("posts").doc(id).collection("likes").onSnapshot((snapshot) => {
                 setLikes(snapshot.docs);
             });
         }, [db, id]);
-
         //Polubione
         useEffect(
             () =>
@@ -49,19 +40,15 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                 ),
             [likes]
         );
-
     //Ustaw polubienie
     const LikePost = async() => {
         if (liked) { //Jeżeli polubione to usuń
-
             db.collection("posts").doc(id).collection("likes").doc(usid).delete().then(() => {
                 console.log("Document successfully deleted!");
             }).catch((error) => {
                 console.error("Error removing document: ", error);
             });
-
         } else { //Jeżeli nie polubione to polub
-
         db.collection("posts").doc(id).collection("likes").doc(usid).set({
             username: usid,
         })
@@ -72,19 +59,14 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
-
-
         }
     }
-
     //wczytaj i zlicz komentarze
     useEffect(() => {
         db.collection("posts").doc(id).collection("comments").onSnapshot((snapshot) => {
             setComments(snapshot.docs);
         });
     }, [db, id]);
-
-
 
     return (
         <div className="post">
@@ -97,9 +79,9 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                         <h3>
                             {displayName}{" "}
                             <span className="post__headerSpecial">
-                {verified && <VerifiedUser className="post__badge" />} @
+                            {verified && <VerifiedUser className="post__badge" />} @
                                 {username}
-              </span>
+                            </span>
                         </h3>
                     </div>
                     <div className="post__headerDescription">
@@ -126,7 +108,6 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                                 {comments.length}
                             </span>
                         )}
-
                     </div>
                     <Repeat fontSize="small" />
                     <div className="Polubienie"
@@ -145,9 +126,7 @@ function Post({ displayName, username, verified, text, image, avatar, id }) {
                             </span>
                         )}
                     </div>
-
                     <Publish fontSize="small" />
-
                 </div>
                 {modalOpen && <Modal setOpenModal={setModalOpen} activePostID={id}/>}
             </div>

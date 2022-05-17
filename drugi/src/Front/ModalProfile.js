@@ -2,20 +2,13 @@ import React, {useEffect, useState} from "react";
 import "./CSS/ModalProfile.css";
 import {db, auth} from "../DBconn/firebase";
 
-
-
 var usid;
 
-
-
 function ModalProfile({ setOpenModal }) {
-
     const [urlImage, seturlImage] = useState("");
-
     auth.onAuthStateChanged((user) => {
         usid=user.uid;
     });
-
     const ChangeImage = async() =>{
         db.collection("users").doc(usid).update({
             avatar: urlImage,
@@ -26,21 +19,16 @@ function ModalProfile({ setOpenModal }) {
             .catch((error) => {
                 console.error("Error writing document: ", error);
             });
-
     };
-
     return (
-
         <div className="modalContainerP">
             <div className="titleCloseBtnP">
                 <button
                     onClick={() => {
                         setOpenModal(false);
-                    }}
-                >
+                    }}>
                     X
                 </button>
-
             </div>
             <div className="comment__input">
                 <input
@@ -55,7 +43,8 @@ function ModalProfile({ setOpenModal }) {
                             ChangeImage();
                             setOpenModal(false);
                         }}>
-                    Zmien</button>
+                    Zmien
+                </button>
             </div>
         </div>
 

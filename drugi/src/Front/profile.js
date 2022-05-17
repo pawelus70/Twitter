@@ -23,7 +23,6 @@ function Profile() {
                     setProfile( doc.data());
                    //console.log('test');
                 } else {
-
                     console.log("No such document!");
                     history.push('/Loginn');
                 }
@@ -32,17 +31,13 @@ function Profile() {
                 history.push('/Loginn');
             });
 
-
         } else {
             // User is signed out
             // Przekieruj do logowania
-            //alert("Sesja wygasła");
             history.push('/Loginn');
         }
     });
     const [profile, setProfile] = useState([]);
-
-
 
     return (
         <div className="profile">
@@ -65,8 +60,6 @@ function Profile() {
             <p>Imie: {profile.firstName}</p>
             <p>Nazwisko: {profile.lastName}</p>
             </div>
-
-
         </div>
     )
 }

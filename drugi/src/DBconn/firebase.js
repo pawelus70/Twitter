@@ -1,4 +1,3 @@
-
 //Importujemy firebase
 import firebase from "firebase";
 

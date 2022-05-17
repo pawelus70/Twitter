@@ -8,21 +8,17 @@ import {useHistory} from "react-router-dom"
 function TweetBox() {
     const [tweetMessage, setTweetMessage] = useState("");
     const [tweetImage, setTweetImage] = useState("");
-
     //history push
     let history = useHistory();
-
     //dodanie posta
     const sendTweet = (e) => {
         //zapobieganie przeładowania strony
         e.preventDefault();
-
         //autoryazajca użytkownika
         auth.onAuthStateChanged((user) => {
             if (user) {
                 //pobierz dodatkowe dane o uzytkowniku na podstawie tokena
                 var docRef = db.collection("users").doc(user.uid);
-                
                 docRef.get().then((doc) => {
                     //jeśli użytkownik istnieje
                     if (doc.exists) {
@@ -47,7 +43,6 @@ function TweetBox() {
                 //wyczyść textboxy
                 setTweetMessage("");
                 setTweetImage("");
-
             } else {
                 // User is signed out
                 // Przekieruj do logowania
@@ -56,7 +51,6 @@ function TweetBox() {
             }
         });
     }
-//
 
 //Okno dodawania postu z zawartością i obrazkiem w postaci url
     return (

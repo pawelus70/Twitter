@@ -15,30 +15,17 @@ function Register() {
     let history = useHistory();
 
     const sendRegister = (e) => {
-
-
         e.preventDefault()
-
         //Sprawdzenie czy użytkownik wypełnił formularz poprawnie
         if (password === repeatPassword && email !== "" && firstName !== "" && lastName !== "" && userName !== "" && password !== "") {
             registerB(email,password,firstName,lastName,userName);
-
         } else {
             //Daj alert jeśli hasło się nie zgadza
             alert("podane hasła się nie zgadzaja/brak danych")
             setPassword("");
             setRepeatPassword("");
         }
-        //Czyszczenie formularza
-        /* setFirstName("");
-         setLastName("");
-         setEmail("");
-         setUsername("");
-         setPassword("");
-         setRepeatPassword("");
- */
     }
-
 
     return (
         <form>
@@ -90,6 +77,5 @@ function Register() {
     )
 }
 ;
-
 
 export default Register;
